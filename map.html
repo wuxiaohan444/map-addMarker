@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+    <title>添加标注</title>
+    <style type="text/css">
+        body,html{
+            height: 100%;
+        }
+        .wrapper {
+            margin: 0 auto;
+            width: 100%;
+            height: 100%;
+        }
+        .container,#container,.clearfix,.clearfix>div{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="container clearfix">
+        <div class="clearfix">
+            <div style="clear: both;">
+                <div  id="container">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        var map = new BMap.Map("container");
+        var point = new BMap.Point(121.432213,31.188371); //中心点
+        map.centerAndZoom(point, 28);  //放大比例
+        // var icon = new BMap.Icon('0.png', new BMap.Size(30, 40));
+        addMarker = function (lng, lat) {
+            point = new BMap.Point(lng, lat);
+            // var marker = new BMap.Marker(point,{
+            //     icon: icon
+            // });
+            var marker = new BMap.Marker(point);
+            map.addOverlay(marker);
+        };
+        addMarker(121.432213,31.188371);
+        addMarker(121.431386,31.188317);
+        addMarker(121.432814,31.188077);
+    })
+
+
+</script>
