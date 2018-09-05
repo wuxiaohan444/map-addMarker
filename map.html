@@ -44,23 +44,22 @@
         map: new BMap.Map("container"),
         point: new BMap.Point(121.432213, 31.188371), //地图显示中心点
         data: ['121.432213, 31.188371', '121.431386, 31.188317', "121.432814,31.188077", "121.432204,31.186641", "121.431512,31.189468"],//数据，第一位是中心点
-        distance: 150,  //附近的距离
+        distance: 100,  //附近的距离
         // icon:new BMap.Icon('0.png', new BMap.Size(30, 40)), // 修改标注图标
-        addMarker:function (lng, lat) {
+        addMarker:function (lng, lat) {                  //添加标注的方法
             point = new BMap.Point(lng, lat);
             // var marker = new BMap.Marker(point,{
             //     icon: this.icon
             // });
             var marker = new BMap.Marker(point);
             map.map.addOverlay(marker);
-        }  //添加标注的方法
+        }
     };
     map.map.centerAndZoom(map.point, 18);  //放大比例
 
-    // var icon = new BMap.Icon('0.png', new BMap.Size(30, 40));
-    for (var i = 0; i < map.data.length; i++) {
-        if ((map.map.getDistance(map.point, new BMap.Point(map.data[i].split(",")[0], map.data[i].split(",")[1]))).toFixed(2) < map.distance) {
-            map.addMarker(map.data[i].split(",")[0], map.data[i].split(",")[1])
+    map.data.forEach(function (item,index) {
+        if ((map.map.getDistance(map.point, new BMap.Point(map.data[index].split(",")[0], map.data[index].split(",")[1]))).toFixed(2) < map.distance) {
+            map.addMarker(map.data[index].split(",")[0], map.data[index].split(",")[1])
         }
-    }
+    })
 </script>
